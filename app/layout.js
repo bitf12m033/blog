@@ -1,6 +1,7 @@
 import { Inter ,Roboto } from "next/font/google";
 import "./globals.css";
 import Chatbot from "@/components/chatbot";
+import Header from "@/components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 const roboto = Roboto({ weight: ['400','700'],
@@ -18,7 +19,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={roboto. className}>{children}
+      <body className={roboto. className}>
+     
+        <Header />
+        <main className="mt-12">
+          {children}
+        </main>
       <Chatbot />
       </body>
     </html>
