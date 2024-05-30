@@ -1,9 +1,12 @@
 import {  getPosts } from '@/lib/posts'
 import Link from 'next/link'
 
-const Page = async () => {
+const Page = async ({searchParams}) => {
 
-    const posts = await getPosts()
+
+    const tags = searchParams?.tags?.split(',')
+    const order = searchParams?.order || 'newest'
+    const posts = await getPosts({tags , newest: order === 'newest' })
    
     return (
         <>
@@ -11,6 +14,11 @@ const Page = async () => {
             <div className="text-lg text-gray-600 dark:text-gray-400 mb-8">Stay up to date with most recent posts</div>
 
             <hr />
+            <div className='mb-8'>
+                Display&nbsp;
+                {order === 'newest' && <Link href={`/blog?order=oldest`} className='underline cursor-auto'>Oldest</Link>}
+                {order === 'oldest' && <Link href={`/blog?order=newest`} className='underline cursor-auto'>Newest</Link>}
+            </div>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {posts.map(post => (
                 <li key={post.slug}>
