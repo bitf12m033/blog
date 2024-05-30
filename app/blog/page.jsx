@@ -1,22 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-import { getPost } from '@/lib/posts'
+import {  getPosts } from '@/lib/posts'
 import Link from 'next/link'
 
 const Page = async () => {
 
-    const files = fs.readdirSync(path.join(process.cwd(), 'content'))
-
-    const posts = await Promise.all(
-        files.map(async file => {
-            const {frontmatter} = await getPost(file);
-            
-            return {
-                frontmatter,
-                slug:file.replace('.mdx', '')
-            }
-        })
-    )
+    const posts = await getPosts()
+   
     return (
         <>
             <h1 className='mb-8 text-xl'>Recent Posts</h1>

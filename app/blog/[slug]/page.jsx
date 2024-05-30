@@ -1,6 +1,10 @@
 // import { MDXRemote } from "next-mdx-remote/rsc"
 import { notFound } from "next/navigation"
-import { getPost } from "@/lib/posts"
+import { getPost as getPostNotCached } from "@/lib/posts"
+import { cache } from "react"
+
+const getPost = cache(async (slug) => await getPostNotCached(slug))
+
 export async function generateMetadata({params}, parent) {
   
   try {
@@ -18,7 +22,6 @@ const BlogPage = async ({params}) => {
     post = await getPost(params.slug)
     
   } catch (error) {
-    console.log(error)
     notFound()
   }
 
