@@ -3,6 +3,8 @@ import "./globals.css";
 import Chatbot from "@/components/chatbot";
 import Header from "@/components/header";
 import useServerDarkMode from "@/hooks/use-server-dark-mode";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 const roboto = Roboto({ weight: ['400','700'],
