@@ -5,9 +5,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import H1 from "@/components/h1";
 
 const ProjectsPage = async () => {
-
-    const response = await fetch('http://localhost:3001/repos' , {cache:'no-store'})
-    const repos = await response.json()
   
   return (
     <div>

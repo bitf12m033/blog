@@ -1,8 +1,6 @@
 import Card from "@/components/Card"
 export default async function ProjectList() {
 
-    
-
     const response = await fetch(
       'https://api.github.com/users/bitf12m033/repos',
     //   { cache: 'no-store' }
